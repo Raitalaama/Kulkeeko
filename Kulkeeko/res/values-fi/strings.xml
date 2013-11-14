@@ -7,14 +7,20 @@
     <string name="button_select_by_placename">Paikannimi</string>
     <string name="edit_placename">Pysäkki jne.</string>
     <string name="button_search_info">Hae poikkeusinfoa</string>
+    
     <string name="search_radius_seeker_title">Hakualue</string>
     <string name="search_radius_seeker_scale_1">0m</string>
     <string name="search_radius_seeker_scale_2">50m</string>
     <string name="search_radius_seeker_scale_3">100m</string>
     <string name="search_radius_seeker_scale_4">500m</string>
     <string name="search_radius_seeker_scale_5">1km</string>
-    <string name="title_activity_show_results">Titteliii</string>
     
+    <string name="check_disruptions">Haetaan poikkeusinfoa..</string>
+    <string name="check_area_info">Haetaan lähistön linjoja..</string>
+    <string name="check_gps">Haetaan sijaintia..</string>
+    <string name="check_disruptions_found">Saatiin poikkeusinfot</string>
+    <string name="check_area_info_found">Saatiin lähistön linjat</string>
+    <string name="check_gps_found">Saatiin sijainti</string>
     
     <string name="result_affecting_disruptions">Vaikuttavat poikkeusinfot</string>
     <string name="result_all_disruptions">Kaikki poikkeusinfot</string>

@@ -20,15 +20,20 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 
 public class StartMenu extends Fragment implements OnClickListener {
 	
+	public interface startMenuCallbacks {
+		public void startSearch(boolean useLocation, int searchRadius, String placename);
+		public void searchCoordinates(boolean useLocation);
+	}
+
+	private startMenuCallbacks mCallbacks;
 	
 	private static final String TAG = StartMenu.class.getSimpleName();
 
 	private boolean mUseLocation;
-	// private String placename;
 	private int mSearchRadius;
 
 	private SeekBar mSearchRadiusSelector;
-	private EditText mPlacenameSelector;
+	private EditText mPlaceNameSelector;
 	private TextView mSearchRadiusView;
 	private SharedPreferences mSettings;
 	private SharedPreferences.Editor mSettingsEditor;
@@ -40,6 +45,13 @@ public class StartMenu extends Fragment implements OnClickListener {
 	public void onAttach(Activity activity) {
 		Log.i(TAG, "onAttach(Activity)");
 		super.onAttach(activity);
+		
+		try {
+			mCallbacks = (startMenuCallbacks) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement startMenuCallbacks");
+        }
+		
 		
 	
 	}
@@ -62,7 +74,7 @@ public class StartMenu extends Fragment implements OnClickListener {
 		View v = inflater.inflate(R.layout.start_menu, container, false);
 
 		mSearchRadiusSelector = (SeekBar)v.findViewById(R.id.search_range_seeker);
-		mPlacenameSelector=(EditText)v.findViewById(R.id.edit_placename);
+		mPlaceNameSelector=(EditText)v.findViewById(R.id.edit_placename);
 		
 		
 		mSearchRadiusView=(TextView)v.findViewById(R.id.search_range_value);
@@ -82,6 +94,8 @@ public class StartMenu extends Fragment implements OnClickListener {
 		else{
 			radioPlace.setChecked(true);
 		}
+		mCallbacks.searchCoordinates(mUseLocation);
+
 
 		mSearchRadiusSelector.setProgress(mSettings.getInt(PREFERENCES_SEARCH_RADIUS, 50));
 		updateSeekBar(mSettings.getInt(PREFERENCES_SEARCH_RADIUS, 50));
@@ -119,22 +133,28 @@ public class StartMenu extends Fragment implements OnClickListener {
 
 
 
+	/* (non-Javadoc)
+	 * @see android.view.View.OnClickListener#onClick(android.view.View)
+	 */
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.radio_location:
 			if(((RadioButton)v).isChecked()){
 				mUseLocation = true;
+				mCallbacks.searchCoordinates(mUseLocation);
 				mSettingsEditor.putBoolean(PREFERENCES_USE_LOCATION,mUseLocation);
 			}
 			break;
 		case R.id.radio_placename:
 			if(((RadioButton)v).isChecked()){
 				mUseLocation = false;
+				mCallbacks.searchCoordinates(mUseLocation);
 				mSettingsEditor.putBoolean(PREFERENCES_USE_LOCATION,mUseLocation);
 			}
 			break;
 		case R.id.search_button:
+			mCallbacks.startSearch(mUseLocation, mSearchRadius, mPlaceNameSelector.getText().toString());
 			break;
 	
 		}
