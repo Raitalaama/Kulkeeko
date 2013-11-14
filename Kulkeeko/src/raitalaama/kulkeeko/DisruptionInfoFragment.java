@@ -27,13 +27,13 @@ public class DisruptionInfoFragment extends Fragment {
 	//TODO Add multiple language support
 	public static String DISRUPTIONINFO_URL;
 	
-	static interface TaskCallbacks {
+	static interface DisruptionCallbacks {
 		public void dInfoOnPostExecute(List<DisruptionInfo> disruptions);
 		public void dInfoOnPreExecute();
 		public void dInfoOnCanceled();
 	}
 	
-	  private TaskCallbacks mCallbacks;
+	  private DisruptionCallbacks mCallbacks;
 	  private parseInfo mTask;
 	  private boolean mRunning;
 
@@ -46,7 +46,7 @@ public class DisruptionInfoFragment extends Fragment {
 	  public void onAttach(Activity activity) {
 	    Log.i(TAG, "onAttach(Activity)");
 	    super.onAttach(activity);
-	    if (!(activity instanceof TaskCallbacks)) {
+	    if (!(activity instanceof DisruptionCallbacks)) {
 	      throw new IllegalStateException("Activity must implement the TaskCallbacks interface.");
 	    }
 	    if(activity.getResources().getConfiguration().locale.getLanguage().equalsIgnoreCase("fi"))
@@ -60,7 +60,7 @@ public class DisruptionInfoFragment extends Fragment {
 	    }
 	    // Hold a reference to the parent Activity so we can report back the task's
 	    // current progress and results.
-	    mCallbacks = (TaskCallbacks) activity;
+	    mCallbacks = (DisruptionCallbacks) activity;
 	  }
 
 	  /**

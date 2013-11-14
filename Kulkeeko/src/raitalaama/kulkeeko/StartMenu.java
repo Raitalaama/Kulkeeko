@@ -115,7 +115,6 @@ public class StartMenu extends Fragment implements OnClickListener {
 
 	}
 
-	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
