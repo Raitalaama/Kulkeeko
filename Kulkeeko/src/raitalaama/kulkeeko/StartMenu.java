@@ -119,15 +119,30 @@ public class StartMenu extends Fragment implements OnClickListener {
 	public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
 		Log.i(TAG, "onActivityCreated(Bundle)");
-
-	
 	}
+	
 	private void updateSeekBar(int progress) {
-		mSearchRadius = progress;
+		mSearchRadius = logSlider(progress);
 		mSearchRadiusView.setText(String.valueOf(mSearchRadius));
 
 		mSettingsEditor.putInt(PREFERENCES_SEARCH_RADIUS, progress);
 		mSettingsEditor.commit();
+	}
+	
+	/** 
+	 * Changes the progress of slider to log and rounds to nearest 5
+	 * 
+	 * @param progress
+	 * @return
+	 */
+	private int logSlider(int progress){
+		int min = 0;
+		int max = mSearchRadiusSelector.getMax();
+		double logMin = Math.log(min);
+		double logMax = Math.log(max);
+		double scale = ((logMax-logMin)/(max-min));
+		double logProgress = Math.exp(logMin + scale*(progress-min));	
+		return (int) (5*Math.round(logProgress/5));
 	}
 
 

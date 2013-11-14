@@ -84,6 +84,8 @@ public class MainActivity extends FragmentActivity implements
 		}
 		FragmentManager fm = getSupportFragmentManager();
 		fm.beginTransaction().remove(startMenu).addToBackStack(null).commit();
+		
+		
 
 	}
 
