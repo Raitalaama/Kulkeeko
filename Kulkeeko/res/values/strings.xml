@@ -1,8 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="app_name">Kulkeeko</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="button_select_by_location">Current location</string>
+    <string name="button_select_by_placename">Place name</string>
+    <string name="edit_placename">Bus stop etc.</string>
+    <string name="button_search_info">Search disruption info</string>
+    <string name="search_radius_seeker_title">Search area</string>
+    <string name="search_radius_seeker_scale_1">0m</string>
+    <string name="search_radius_seeker_scale_2">50m</string>
+    <string name="search_radius_seeker_scale_3">100m</string>
+    <string name="search_radius_seeker_scale_4">500m</string>
+    <string name="search_radius_seeker_scale_5">1km</string>
+    <string name="title_activity_show_results">Titteliii</string>
+    
+    
+    <string name="result_affecting_disruptions">Affecting disruptions</string>
+    <string name="result_all_disruptions">All disruptions</string>
+    <string name="result_lines">Found lines</string>
+    <string name="result_stops">Found stops</string>
+    
+    <string name="unknown_activity_request_code">Received an unknown activity request code %1$d in onActivityResult.
+</string>
+    <string name="resolved">Error resolved. Please re-try operation.</string>
+    <string name="play_services_available">Google Play services is available</string>
+    <string name="no_resolution">Google Play services: unable to resolve connection error.</string>
+
 
 </resources>
